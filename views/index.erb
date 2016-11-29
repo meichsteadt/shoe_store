@@ -1,10 +1,40 @@
 <h1>Name Template</h1>
 <form action="/form_action">
+
+  <!-- Select boxes -->
   <select class="form-control" name="Variable-Template">
   <option>var1</option>
   <option>var2</option>
   <option>var3</option>
   </select>
 
+  <!-- Forms -->
+  <div class="form-group">
+    <label for="person1">A name</label>
+    <input id="person1" class="form-control" type="text">
+  </div>
+  <div class="form-group">
+    <label for="person2">Another name</label>
+    <input id="person2" class="form-control" type="text">
+  </div>
+  <div class="form-group">
+    <label for="animal">An animal</label>
+    <input id="animal" class="form-control" type="text">
+  </div>
+
+  <!-- Radio -->
+  <div class="radio">
+    <label>
+      <input type="radio" name="flavor" value="chocolate" checked>
+      Chocolate
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="flavor" value="vanilla">
+      Vanilla
+    </label>
+  </div>
+  <div class="radio">
   <button type="submit" class="btn-success">Button Text</button>
 </form>
