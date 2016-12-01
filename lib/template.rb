@@ -1,5 +1,5 @@
 class Class
-  define_method(:method) do |variable_if_needed|
+  def method_name
 
   end
 end
