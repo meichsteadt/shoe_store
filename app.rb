@@ -1,8 +1,7 @@
-# require 'sinatra'
-# require 'sinatra/reloader'
-# require './lib/template'
-# also_reload 'lib/**/*.rb'
-#
-# get '/' do
-#   erb :index
-# end
+require("bundler/setup")
+Bundler.require(:default)
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
+
+get '/' do
+  erb :index
+end
