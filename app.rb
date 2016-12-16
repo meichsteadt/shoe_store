@@ -45,8 +45,8 @@ end
 post '/stores/:id/new_shoe' do
   @store = Store.find(params[:id])
   @shoe = Shoe.create(name: params[:name])
-  @store.shoes.push(@shoe)
   if @shoe.save
+    @store.shoes.push(@shoe)
     redirect('/stores/' + @store.id.to_s)
   else
     @errors = @shoe.errors.full_messages[0]
