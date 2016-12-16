@@ -1,6 +1,6 @@
 # _Shoe Tracker_
 
-_This application will take allow a user to store multiple shoe stores and their multiple brands
+_This application will take allow a user to store multiple shoe stores and their multiple brands_
 
 _**Matt Eichsteadt**_
 
