@@ -1,0 +1,18 @@
+$title_font: 'Roboto', sans-serif;
+$body_font: 'Open Sans', sans-serif;
+@mixin shadow_card {
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.35), -2px 2px 8px rgba(0,0,0,0.35);
+}
+
+body {
+  font-family: $body_font;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  font-family: $title_font;
+}
+
+.jumbotron {
+  @include shadow_card;
+  text-align: center;
+}

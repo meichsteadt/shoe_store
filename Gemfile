@@ -7,6 +7,8 @@ gem 'pg'
 gem 'sinatra'
 gem 'shoulda-matchers', '~> 2.0'
 gem 'pry'
+gem 'sass'
+gem 'compass'
 
 group(:test) do
   gem 'rspec'
