@@ -27,14 +27,31 @@ post '/stores' do
     redirect('/stores')
   else
     @shoes = Shoe.all
-    @errors = @shoe.errors[:name]
-    erb :shoe_error
+    @errors = @store.errors.full_messages[0]
+    erb :store_form
   end
 end
 
 get '/stores/:id' do
   @store = Store.find(params[:id].to_i)
   erb :store
+end
+
+get '/stores/:id/new_shoe' do
+  @store = Store.find(params[:id].to_i)
+  erb :store_add_shoe
+end
+
+post '/stores/:id/new_shoe' do
+  @store = Store.find(params[:id])
+  @shoe = Shoe.create(name: params[:name])
+  @store.shoes.push(@shoe)
+  if @shoe.save
+    redirect('/stores/' + @store.id.to_s)
+  else
+    @errors = @shoe.errors.full_messages[0]
+    erb :store_add_shoe
+  end
 end
 
 get '/stores/:id/update' do
@@ -45,27 +62,30 @@ get '/stores/:id/update' do
 end
 
 patch '/stores/:id' do
-  store = Store.find(params[:id].to_i)
-  store.update(name: params[:name])
+  @store = Store.find(params[:id].to_i)
+  @store.update(name: params[:name])
   if params[:shoes]
-    store.shoes.each do |shoe|
-      if !params[:shoes].include?(shoe.id)
-        store.shoes.destroy(shoe.id)
+    @store.shoes.each do |shoe|
+      if !params[:shoes].include?(shoe.id.to_s)
+        @store.shoes.destroy(shoe.id.to_i)
       end
     end
     params[:shoes].each do |shoe|
-      if !store.shoes.include?(Shoe.find(shoe.to_i))
-        store.shoes.push(Shoe.find(shoe.to_i))
+      if !@store.shoes.include?(Shoe.find(shoe.to_i))
+        @store.shoes.push(Shoe.find(shoe.to_i))
       end
     end
   else
-    store.shoes.length.times do |time|
-      store.shoes.destroy(store.shoes[0])
+    @store.shoes.length.times do |time|
+      @store.shoes.destroy(@store.shoes[0])
     end
   end
-  if store.save
-    redirect('/stores/' + store.id.to_s)
+  if @store.save
+    redirect('/stores/' + @store.id.to_s)
   else
+    @update = true
+    @errors = @store.errors.full_messages[0]
+    @shoes = Shoe.all
     erb :store_form
   end
 end
@@ -120,28 +140,30 @@ get '/shoes/:id/update' do
 end
 
 patch '/shoes/:id' do
-  shoe = Shoe.find(params[:id].to_i)
-  shoe.update(name: params[:name])
+  @shoe = Shoe.find(params[:id].to_i)
+  @shoe.update(name: params[:name])
   if params[:stores]
-    shoe.stores.each do |store|
-      if !params[:stores].include?(store.id)
-        shoe.stores.destroy(store.id)
+    @shoe.stores.each do |store|
+      if !params[:stores].include?(store.id.to_s)
+        @shoe.stores.destroy(store.id.to_i)
       end
     end
     params[:stores].each do |store|
-      if !shoe.stores.include?(Store.find(store.to_i))
-        shoe.stores.push(Store.find(store.to_i))
+      if !@shoe.stores.include?(Store.find(store.to_i))
+        @shoe.stores.push(Store.find(store.to_i))
       end
     end
   else
-    shoe.stores.length.times do |time|
-      shoe.stores.destroy(shoe.stores[0])
+    @shoe.stores.length.times do |time|
+      @shoe.stores.destroy(@shoe.stores[0])
     end
   end
-  if shoe.save
-    redirect('/shoes/' + shoe.id.to_s)
+  if @shoe.save
+    redirect('/shoes/' + @shoe.id.to_s)
   else
+    @update = true
     @stores = Store.all
+    @errors = @shoe.errors.full_messages[0]
     erb :shoe_form
   end
 end
