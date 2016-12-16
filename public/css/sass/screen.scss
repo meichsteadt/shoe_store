@@ -2,7 +2,6 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
 $title_font: 'Roboto', sans-serif;
 $body_font: 'Open Sans', sans-serif;
 @mixin shadow_card {
@@ -21,3 +20,17 @@ h1, .h1, h2, .h2, h3, .h3 {
   @include shadow_card;
   text-align: center;
 }
+
+.btn {
+  margin-top: 10px;
+}
+
+li {
+  text-align: left;
+}
+
+form {
+  display: inline;
+}
+
+@import 'navbar';

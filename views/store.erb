@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h1><%= @store.name %></h1>
+  <ul>
+    <% @store.shoes.each do |shoe| %>
+      <a href="/shoes/<%= shoe.id %>">
+        <li><%= shoe.name %></li>
+      </a>
+    <% end %>
+  </ul>
+  <a href="/stores/<%= @store.id %>/update" class="btn btn-default"><i class="fa.fa-plus"></i> Update store</a>
+  <form action="/stores/<%= @store.id() %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button class="btn btn-default" type="submit"><i class="fa.fa-plus"></i> Delete store</button>
+  </form>
+</div>

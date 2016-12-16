@@ -2,18 +2,115 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 12, ../sass/screen.scss */
+/* line 11, ../sass/screen.scss */
 body {
   font-family: "Open Sans", sans-serif;
 }
 
-/* line 16, ../sass/screen.scss */
+/* line 15, ../sass/screen.scss */
 h1, .h1, h2, .h2, h3, .h3 {
   font-family: "Roboto", sans-serif;
 }
 
-/* line 20, ../sass/screen.scss */
+/* line 19, ../sass/screen.scss */
 .jumbotron {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35), -2px 2px 8px rgba(0, 0, 0, 0.35);
   text-align: center;
+}
+
+/* line 24, ../sass/screen.scss */
+.btn {
+  margin-top: 10px;
+}
+
+/* line 28, ../sass/screen.scss */
+li {
+  text-align: left;
+}
+
+/* line 32, ../sass/screen.scss */
+form {
+  display: inline;
+}
+
+/* line 6, ../sass/_navbar.scss */
+.navbar-default {
+  background-color: #226765;
+  border-color: #034442;
+}
+/* line 9, ../sass/_navbar.scss */
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+/* line 11, ../sass/_navbar.scss */
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #acbebd;
+}
+/* line 13, ../sass/_navbar.scss */
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+/* line 17, ../sass/_navbar.scss */
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+/* line 19, ../sass/_navbar.scss */
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #acbebd;
+}
+/* line 38, ../sass/_navbar.scss */
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #acbebd;
+  background-color: #034442;
+}
+/* line 42, ../sass/_navbar.scss */
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #acbebd;
+  background-color: #034442;
+}
+/* line 45, ../sass/_navbar.scss */
+.navbar-default .navbar-toggle {
+  border-color: #034442;
+}
+/* line 47, ../sass/_navbar.scss */
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #034442;
+}
+/* line 49, ../sass/_navbar.scss */
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+/* line 51, ../sass/_navbar.scss */
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+/* line 54, ../sass/_navbar.scss */
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+/* line 56, ../sass/_navbar.scss */
+.navbar-default .navbar-link:hover {
+  color: #acbebd;
+}
+
+@media (max-width: 767px) {
+  /* line 60, ../sass/_navbar.scss */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  /* line 62, ../sass/_navbar.scss */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #acbebd;
+  }
+  /* line 65, ../sass/_navbar.scss */
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #acbebd;
+    background-color: #034442;
+  }
+}
+/* line 70, ../sass/_navbar.scss */
+.jumbotron {
+  background-color: #ecf0f1;
+  color: #333;
 }

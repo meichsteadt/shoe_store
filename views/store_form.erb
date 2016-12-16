@@ -1,0 +1,22 @@
+<% @update ? word = 'Update' : word = 'Add' %>
+<h1><%= word %> a store</h1>
+<form action="/stores/<% if @update %><%= @store.id %><% end %>" method="post">
+  <% if @update %>  <input name="_method" type="hidden" value="patch"> <% end %>
+  <!-- Forms -->
+  <div class="form-group">
+    <label for="name">Store name</label>
+    <input id="name" name="name" class="form-control" type="text" <% if @update %> value="<%= @store.name %>"><% end %>
+  </div>
+
+  <% if @shoes.length > 0 %>
+  <div class="checkbox">
+    <% @shoes.each do |shoe| %>
+      <label>
+        <input name="shoes[]" type="checkbox" value="<%= shoe.id %>">
+        <%= shoe.name %>
+      </label>
+    <% end %>
+  </div>
+  <% end %>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
