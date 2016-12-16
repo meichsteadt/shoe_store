@@ -1,12 +1,16 @@
 <% @update ? word = 'Update' : word = 'Add' %>
 <h1><%= word %> a shoe</h1>
-<form action="/shoe" method="post">
+<form action="/shoes<% if @update %>/<%= @shoe.id %><% end %>" method="post">
+  <% if @update %>  <input name="_method" type="hidden" value="patch"> <% end %>
   <!-- Forms -->
   <div class="form-group">
     <label for="name">Brand name</label>
     <input id="name" name="name" class="form-control" type="text" <% if @update %> value="<%= @shoe.name %>"><% end %>
   </div>
-
+  <% if @errors %>
+    <p class="error"><%= @errors %></p>
+  <% end %>
+  
   <% if @stores.length > 0 %>
   <div class="checkbox">
     <% @stores.each do |store| %>

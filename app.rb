@@ -17,14 +17,18 @@ get '/stores/new' do
 end
 
 post '/stores' do
-  new_store = Store.create(name: params[:name])
-  params[:shoes].each do |shoe|
-    new_store.shoes.push(Shoe.find(shoe.to_i))
+  @store = Store.create(name: params[:name])
+  if params[:shoes]
+    params[:shoes].each do |shoe|
+      @store.shoes.push(Shoe.find(shoe.to_i))
+    end
   end
-  if new_store.save
+  if @store.save
     redirect('/stores')
   else
-    erb :store_form
+    @shoes = Shoe.all
+    @errors = @shoe.errors[:name]
+    erb :shoe_error
   end
 end
 
@@ -87,13 +91,17 @@ get '/shoes/new' do
 end
 
 post '/shoes' do
-  new_shoe = Shoe.create(name: params[:name])
-  params[:stores].each do |store|
-    new_shoe.shoes.push(Store.find(store.to_i))
+  @shoe = Shoe.create(name: params[:name])
+  if params[:stores]
+    params[:stores].each do |store|
+      @shoe.stores.push(Store.find(store.to_i))
+    end
   end
-  if new_shoe.save
+  if @shoe.save
     redirect('/shoes')
   else
+    @stores = Store.all
+    @errors = @shoe.errors.full_messages[0]
     erb :shoe_form
   end
 end
@@ -106,6 +114,7 @@ end
 
 get '/shoes/:id/update' do
   @shoe = Shoe.find(params[:id].to_i)
+  @stores = Store.all
   @update = true
   erb :shoe_form
 end
@@ -113,23 +122,37 @@ end
 patch '/shoes/:id' do
   shoe = Shoe.find(params[:id].to_i)
   shoe.update(name: params[:name])
-  params[:stores].each do |store|
-    new_shoe.shoes.push(store)
-  end
-  if new_shoe.save
-    redirect('/shoes')
+  if params[:stores]
+    shoe.stores.each do |store|
+      if !params[:stores].include?(store.id)
+        shoe.stores.destroy(store.id)
+      end
+    end
+    params[:stores].each do |store|
+      if !shoe.stores.include?(Store.find(store.to_i))
+        shoe.stores.push(Store.find(store.to_i))
+      end
+    end
   else
+    shoe.stores.length.times do |time|
+      shoe.stores.destroy(shoe.stores[0])
+    end
+  end
+  if shoe.save
+    redirect('/shoes/' + shoe.id.to_s)
+  else
+    @stores = Store.all
     erb :shoe_form
   end
 end
 
-delete '/shoe' do
+delete '/shoes/:id' do
   shoe = Shoe.find(params[:id])
   shoe.destroy
-  if new_shoe.destroy
+  if shoe.destroy
     redirect('/shoes')
   else
-    erb :shoe
+    erb :shoes
   end
 end
 

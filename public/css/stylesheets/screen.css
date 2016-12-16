@@ -33,6 +33,11 @@ form {
   display: inline;
 }
 
+/* line 36, ../sass/screen.scss */
+.error {
+  color: #d9534f;
+}
+
 /* line 6, ../sass/_navbar.scss */
 .navbar-default {
   background-color: #226765;
